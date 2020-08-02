@@ -3,32 +3,26 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
+
     Redirect,
 
 
 } from 'react-router-dom';
 import styled from 'styled-components';
+import Nav from './components/Nav';
 
 const Wrapper = styled.div`
  
   min-height: 100vh;
   display:flex;
   flex-direction: column;
-  >ul {
-         display:flex;
-    >li{
-      flex: 33.3%;
-      text-align: center;
-      padding: 16px;
-    }
-  }
 `;
 const Main = styled.div`
   
   flex-grow: 1;
 
 `;
+
 export default function App() {
     return (
         <Router>
@@ -50,17 +44,7 @@ export default function App() {
                         </Route>
                     </Switch>
                 </Main>
-                <ul>
-                    <li>
-                        <Link to="/tags">标签</Link>
-                    </li>
-                    <li>
-                        <Link to="/money">记账</Link>
-                    </li>
-                    <li>
-                        <Link to="/statistics">统计</Link>
-                    </li>
-                </ul>
+                <Nav/>
 
 
             </Wrapper>
