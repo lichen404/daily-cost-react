@@ -4,7 +4,6 @@ import React from 'react';
 import Icon from './icon';
 
 
-
 const NavWrapper = styled.nav`
       line-height: 24px;
       box-shadow: 0 0 3px rgba(0,0,0,0.25);
@@ -12,12 +11,15 @@ const NavWrapper = styled.nav`
          display:flex;
         
         >li{
-        flex: 33.3%;
-        text-align: center;
-        padding: 4px 0;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
+            flex: 33.3%;
+            text-align: center;
+              > a {
+              display: flex;
+              flex-direction: column;
+              padding: 4px 0;
+              align-items: center;
+              justify-content: center;
+            }
         .icon {
         width: 24px;
         height: 24px;
@@ -31,15 +33,19 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                <Icon name="tags"/>
-                    <Link to="/tags">标签</Link>
-                </li>
-                <li><Icon name="money"/>
-                    <Link to="/money">记账</Link>
+                    <Link to="/tags">
+                        <Icon name="tags"/>标签
+                    </Link>
                 </li>
                 <li>
-                   <Icon name="statistics"/>
-                    <Link to="/statistics">统计</Link>
+                    <Link to="/money">
+                        <Icon name="money"/>记账
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/statistics">
+                        <Icon name="statistics"/>统计
+                    </Link>
                 </li>
             </ul>
         </NavWrapper>
