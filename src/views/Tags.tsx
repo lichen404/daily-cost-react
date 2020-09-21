@@ -3,6 +3,7 @@ import React from 'react';
 import {useTags} from '../useTags';
 import styled from 'styled-components';
 import Icon from 'components/icon';
+import {Space} from '../components/Space';
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -32,9 +33,7 @@ const Center = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-const Space = styled.div`
-  height: 64px;
-`;
+
 
 function Tags() {
     const {tags, setTags} = useTags();
@@ -47,8 +46,7 @@ function Tags() {
                 </li>)}
 
             </TagList>
-            <Space/>
-
+            <Space size="large"/>
             <Center>
                 <Button>新增标签</Button>
             </Center>
