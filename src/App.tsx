@@ -8,7 +8,7 @@ import {
 import Money from './views/Money';
 import Statistics from './views/Statistics';
 import Tags from './views/Tags';
-
+import {Tag} from './views/Tag';
 
 
 export default function App() {
@@ -16,7 +16,10 @@ export default function App() {
         <Router>
 
             <Switch>
-                <Route path="/tags">
+                <Route path="/tags/:tag" exact={true}>
+                    <Tag/>
+                </Route>
+                <Route path="/tags" exact={true}>
                     <Tags/>
                 </Route>
                 <Route path="/money">
