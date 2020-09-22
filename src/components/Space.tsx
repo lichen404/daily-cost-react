@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface SizeProps {
+type SizeProps= {
     size:'small'|'large'|'medium'
 }
 const Space = styled.div`
