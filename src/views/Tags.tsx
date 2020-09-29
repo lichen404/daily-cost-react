@@ -6,6 +6,7 @@ import Icon from 'components/icon';
 import {Space} from '../components/Space';
 import {Link} from 'react-router-dom';
 import Button from '../components/Button';
+import {Center} from '../components/Center';
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -25,12 +26,7 @@ const TagList = styled.ul`
 
 `;
 
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
+
 
 
 function Tags() {
