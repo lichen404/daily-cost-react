@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Icon from 'components/icon';
 import {Space} from '../components/Space';
 import {Link} from 'react-router-dom';
+import Button from '../components/Button';
 
 const TagList = styled.ul`
   font-size: 16px;
@@ -23,15 +24,7 @@ const TagList = styled.ul`
   }
 
 `;
-const Button = styled.button`
-  font-size: 18px;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  background-color: #767676;
-  color:#fff;
-  
-`;
+
 const Center = styled.div`
   display: flex;
   justify-content: center;
