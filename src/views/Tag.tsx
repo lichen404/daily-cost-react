@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {useTags} from '../useTags';
 import Layout from '../components/Layout';
 import Icon from '../components/icon';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {Input} from '../components/Input';
 import {Center} from '../components/Center';
 import {Space} from '../components/Space';
+
 
 type Params = {
     id: string
@@ -27,9 +28,10 @@ const InputWrapper = styled.div`
     margin-top: 8px;
 `;
 const Tag: React.FC = () => {
-    const {findTag} = useTags();
-    const {id} = useParams<Params>();
-    const tag = findTag(parseInt(id));
+    const {findTag, editTag,deleteTag} = useTags();
+    const {id: idString} = useParams<Params>();
+    const history = useHistory()
+    const tag = findTag(parseInt(idString));
     return (
         <Layout>
             <TopBar>
@@ -38,11 +40,18 @@ const Tag: React.FC = () => {
                 <Icon/>
             </TopBar>
             <InputWrapper>
-                <Input label="标签名" type="text" placeholder="标签名" value={tag.name}/>
+                <Input label="标签名" type="text" placeholder="标签名" value={tag.name} onChange={
+                    (e) => {
+                        editTag(tag.id, {name: e.target.value});
+                    }
+                }/>
             </InputWrapper>
             <Space size="large"/>
             <Center>
-                <Button>删除标签</Button>
+                <Button onClick={()=>{
+                    deleteTag(tag.id)
+                    history.push('/tags')
+                }}>删除标签</Button>
             </Center>
         </Layout>
 
