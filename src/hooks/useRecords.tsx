@@ -14,6 +14,10 @@ type  newRecordItem = {
 const useRecords = () => {
     const [records, setRecords] = useState<RecordItem[]>([]);
     const addRecord = (newRecord: newRecordItem) => {
+        if(newRecord.tagIds.length===0){
+            return alert('请选择至少一个标签')
+        }
+
         const record = {...newRecord, createdAt: (new Date()).toISOString()};
         setRecords([...records, record]);
 
