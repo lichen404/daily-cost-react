@@ -32,6 +32,7 @@ const Tag: React.FC = () => {
     const {id: idString} = useParams<Params>();
     const history = useHistory()
     const tag = findTag(parseInt(idString));
+
     return (
         <Layout>
             <TopBar>

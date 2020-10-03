@@ -2,27 +2,30 @@ import {useEffect, useState} from 'react';
 import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
 
-const defaultTags = [{id: createId(), name: '衣'}, {id: createId(), name: '食'}, {
-    id: createId(),
-    name: '住'
-}, {id: createId(), name: '行'}];
+
 const useTags = () => {
     // 封装自定义hook
     const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
     useEffect(() => {
-        let  localTags = JSON.parse(window.localStorage.getItem('tags') || '[]')
-        if(localTags.length===0){
-            localTags = defaultTags
+        let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
+        if (localTags.length === 0) {
+            localTags = [{id: createId(), name: '衣'}, {id: createId(), name: '食'}, {
+                id: createId(),
+                name: '住'
+            }, {id: createId(), name: '行'}];
         }
-        setTags(localTags)
+        setTags(localTags);
 
 
     }, []); // 组件挂载时执行
-    useUpdate(()=>{
+    useUpdate(() => {
 
         window.localStorage.setItem('tags', JSON.stringify(tags));
-    },tags)
-    const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
+    }, tags);
+    const findTag = (id: number) => {
+        console.log(id)
+        return tags.filter(tag => tag.id === id)[0];
+    };
     const findTagIndex = (id: number) => {
         let result = -1;
         for (let i = 0; i < tags.length; i++) {
