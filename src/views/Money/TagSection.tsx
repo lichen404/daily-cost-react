@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import {useTags} from '../../useTags';
+import {useTags} from '../../hooks/useTags';
 
 
 const Wrapper = styled.section`
@@ -39,15 +39,10 @@ type Props = {
     onChange: (selectedId:number[]) => void;
 }
 const TagsSection: React.FC<Props> = (props) => {
-    const {tags,setTags} = useTags()
-    const selectedIds = props.value;
-    const onAddTag = () => {
-        const name = window.prompt('新标签的名称为');
-        if (name) {
-            setTags([...tags, {id:Math.random(),name}]);
-        }
+    const {tags,addTag} = useTags()
 
-    };
+    const selectedIds = props.value;
+
     const onToggle = (tagId:number) => {
         const index = selectedIds.indexOf(tagId);
         if (index >= 0) {
@@ -63,7 +58,7 @@ const TagsSection: React.FC<Props> = (props) => {
                            className={selectedIds.indexOf(tag.id) >= 0 ? 'selected' : ''}>{tag.name}</li>;
             })}
         </ul>
-        <button onClick={onAddTag}>新增标签</button>
+        <button onClick={addTag}>新增标签</button>
     </Wrapper>;
 };
 export default TagsSection;

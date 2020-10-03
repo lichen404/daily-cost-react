@@ -7,7 +7,6 @@ import NoteSection from './Money/NoteSection';
 import TagSection from './Money/TagSection';
 
 
-
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
@@ -32,7 +31,7 @@ function Money() {
     return (
 
         <MyLayout className="xxx">
-            {selected.amount}
+
             <TagSection value={selected.tagIds} onChange={(tagIds) => onChange({tagIds})
             }/>
             <NoteSection value={selected.note} onChange={(note: string) => onChange({note})}/>
