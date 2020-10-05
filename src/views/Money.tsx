@@ -37,7 +37,7 @@ function Money() {
     const {addRecord} = useRecords();
     return (
 
-        <MyLayout className="xxx">
+        <MyLayout className="xxx" scrollTop={9999}>
             <TagSection value={selected.tagIds} onChange={(tagIds) => onChange({tagIds})
             }/>
             <NoteSection value={selected.note} onChange={(note: string) => onChange({note})}/>
