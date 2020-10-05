@@ -2,7 +2,7 @@ import React from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import {useTags} from '../hooks/useTags';
 import Layout from '../components/Layout';
-import Icon from '../components/icon';
+import Icon from '../components/Icon';
 import Button from 'components/Button';
 import styled from 'styled-components';
 import {Input} from '../components/Input';
@@ -32,7 +32,26 @@ const Tag: React.FC = () => {
     const {id: idString} = useParams<Params>();
     const history = useHistory()
     const tag = findTag(parseInt(idString));
-
+    const tagContent = (tag:{id:number;name:string})=>{
+        return (
+            <div>
+                <InputWrapper>
+                    <Input label="标签名" type="text" placeholder="标签名" value={tag.name} onChange={
+                        (e) => {
+                            editTag(tag.id, {name: e.target.value});
+                        }
+                    }/>
+                </InputWrapper>
+                <Space size="large"/>
+                <Center>
+                    <Button onClick={()=>{
+                        deleteTag(tag.id)
+                        history.push('/tags')
+                    }}>删除标签</Button>
+                </Center>
+            </div>
+        )
+    }
     return (
         <Layout>
             <TopBar>
@@ -42,20 +61,7 @@ const Tag: React.FC = () => {
                 <span>编辑标签</span>
                 <Icon/>
             </TopBar>
-            <InputWrapper>
-                <Input label="标签名" type="text" placeholder="标签名" value={tag.name} onChange={
-                    (e) => {
-                        editTag(tag.id, {name: e.target.value});
-                    }
-                }/>
-            </InputWrapper>
-            <Space size="large"/>
-            <Center>
-                <Button onClick={()=>{
-                    deleteTag(tag.id)
-                    history.push('/tags')
-                }}>删除标签</Button>
-            </Center>
+            {tag ? tagContent(tag):<Center>标签不存在</Center>}
         </Layout>
 
     );
