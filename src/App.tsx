@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
     Redirect,
@@ -9,7 +9,6 @@ import Money from './views/Money';
 import Statistics from './views/Statistics';
 import Tags from './views/Tags';
 import {Tag} from './views/Tag';
-
 
 export default function App() {
     return (
@@ -22,7 +21,7 @@ export default function App() {
                 <Route path="/tags" exact={true}>
                     <Tags/>
                 </Route>
-                <Route path="/money">
+                <Route path="/money" exact={true}>
                     <Money/>
                 </Route>
                 <Route path="/statistics">
