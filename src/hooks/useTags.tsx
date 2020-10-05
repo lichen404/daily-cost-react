@@ -16,14 +16,12 @@ const useTags = () => {
         }
         setTags(localTags);
 
-
     }, []); // 组件挂载时执行
     useUpdate(() => {
 
         window.localStorage.setItem('tags', JSON.stringify(tags));
     }, tags);
     const findTag = (id: number) => {
-        console.log(id)
         return tags.filter(tag => tag.id === id)[0];
     };
     const findTagIndex = (id: number) => {
@@ -56,6 +54,10 @@ const useTags = () => {
     const deleteTag = (id: number) => {
         setTags(tags.filter(tag => tag.id !== id));
     };
+    const getName = (id: number) => {
+        const tag = tags.filter(t => t.id === id)[0];
+        return tag ? tag.name : '';
+    };
     return {
         tags,
         setTags,
@@ -63,7 +65,8 @@ const useTags = () => {
         editTag,
         findTagIndex,
         deleteTag,
-        addTag
+        addTag,
+        getName
     };
 };
 export {useTags};

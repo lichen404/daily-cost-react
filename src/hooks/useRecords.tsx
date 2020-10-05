@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
-type RecordItem = newRecordItem & {
+export type RecordItem = newRecordItem & {
 
     createdAt: string //ISO 8601
 }
@@ -15,11 +15,13 @@ const useRecords = () => {
     const [records, setRecords] = useState<RecordItem[]>([]);
     const addRecord = (newRecord: newRecordItem) => {
         if(newRecord.tagIds.length===0){
-            return alert('请选择至少一个标签')
+             alert('请选择至少一个标签')
+            return false
         }
 
         const record = {...newRecord, createdAt: (new Date()).toISOString()};
         setRecords([...records, record]);
+        return true;
 
     };
     useEffect(() => {
