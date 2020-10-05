@@ -4,7 +4,8 @@ import {calculateOutput} from './NumberPadSection/calculateOutput';
 
 type Props = {
     onChange: (amount: number) => void
-    onSubmit:()=>void
+    onSubmit:()=>void,
+
 }
 const NumberPadSection: React.FC<Props> = (props) => {
     const [output, _setOutput] = useState('0');
@@ -30,9 +31,8 @@ const NumberPadSection: React.FC<Props> = (props) => {
             const value = parseFloat(output)
             if(value>0){
                 props.onSubmit()
-                setOutput('')
+                _setOutput('0')
             }
-
             return;
         }
         if (('0123456789.'.split('').concat(['删除', '清空']).indexOf(text)) >= 0) {
@@ -66,3 +66,4 @@ const NumberPadSection: React.FC<Props> = (props) => {
     );
 };
 export default NumberPadSection;
+

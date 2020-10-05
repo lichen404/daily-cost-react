@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import NumberPadSection from './Money/NumberPadSection';
 import CategorySection from './Money/CategorySection';
 import NoteSection from './Money/NoteSection';
-import TagSection from './Money/TagSection';
+import TagSection from './Money/TagsSection';
 import {useRecords} from '../hooks/useRecords';
 
 
@@ -19,7 +19,12 @@ const defaultFormData = {
     category: '-' as Category,
     amount: 0
 
-}
+};
+
+const CategoryWrapper = styled.div`
+    background:#c4c4c4;
+`;
+
 function Money() {
     const [selected, setSelected] = useState(defaultFormData);
     const onChange = (obj: Partial<typeof selected>) => {
@@ -29,18 +34,21 @@ function Money() {
         });
 
     };
-    const {addRecord} = useRecords()
+    const {addRecord} = useRecords();
     return (
 
         <MyLayout className="xxx">
             <TagSection value={selected.tagIds} onChange={(tagIds) => onChange({tagIds})
             }/>
             <NoteSection value={selected.note} onChange={(note: string) => onChange({note})}/>
-            <CategorySection value={selected.category} onChange={(category: Category) => onChange({category})}/>
+            <CategoryWrapper>
+                <CategorySection value={selected.category}
+                                 onChange={category => onChange({category})}/>
+            </CategoryWrapper>
             <NumberPadSection onChange={(amount: number) => {onChange({amount});}} onSubmit={
-                ()=>{
-                    addRecord(selected)
-                    setSelected(defaultFormData)
+                () => {
+                    addRecord(selected);
+                    setSelected(defaultFormData);
                 }
             }/>
         </MyLayout>
